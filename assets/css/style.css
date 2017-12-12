@@ -1,0 +1,43 @@
+.container {
+	background-image: url(../images/halftone-yellow.png);
+}
+
+.instructions {
+	background-color: white;
+	padding: 20px;
+	width: 450px;
+
+}
+
+.Computer-Number {
+	background-color: teal;
+	padding: 10px;
+	width: 450px;
+}
+
+.Wins-Losses {
+	margin-top: 20px;
+	width: 450px;
+	background-color: orange;
+	padding: 10px;
+}
+
+.crystals img {
+	margin-top: 20px;
+	height: 80px;
+	width: 80px;
+}
+
+.user-words,.User-Number {
+	margin-top: 20px;
+	background-color: orange;
+	width: 450px;
+	padding: 10px;
+}
+
+.User-Number {
+	height: 150px;
+	margin-bottom: 50px;
+	padding: 10px;
+	width: 450px;
+}

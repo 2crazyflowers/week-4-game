@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Crystal Collector Game</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+	<div class="container">
+		<h1>Crystals Collector</h1>
+		<div class="instructions">
+			<p>You will be given a random number at the start of the game</p>
+			<!-- <br> -->
+			<p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+			<!-- <br> -->
+			<p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
+			<!-- <br> -->
+			<p>The value of each crystal is hidden from you until you click on it.</p>
+			<!-- <br> -->
+			<p>Each time when the game starts, the game will change the values of each crystal.</p>
+		</div>
+		<div class="Computer-Number">
+			<p>Number to match: <span class="Computer-Number"></span></p>
+		</div>
+		<div class="Wins-Losses">
+			<p>Wins: <span class="wins"></span></p>
+			<p>Losses: <span class="losses"></span></p>
+		</div>
+		<div class="crystals">
+			<img src="assets/images/bluecrystal.jpg" class="crystal-1">
+			<img src="assets/images/pinkcrystal.jpg" class="crystal-2">
+			<img src="assets/images/whitecrystal.jpg" class="crystal-3">
+			<img src="assets/images/redcrystal.jpg" class="crystal-4">
+		</div>
+		<div class="user-words">
+			<p>Your total score is:</p>
+		</div>
+		<div class="User-Number">Hello World</div>
+	</div>
+
+	<script type="text/javascript">
+		
+		computerNumber = (Math.floor(Math.random()*120) + 19);
+		console.log(computerNumber);
+
+		//function give random values to crystals
+		//the random numbers are chosen from an array of 4 numbers
+		//then you pick a number from the array to give value to a crystal
+		//numbers from 1-12
+		var crytalArray = [0, 0, 0, 0];
+
+		//we want to pick a number for each of the crystals
+		for (var i = 0; i < crytalArray.length; i++) {
+
+
+		crystalNumber[i] = (Math.floor(Math.random()*12 )+ 1);
+		console.log("crystal" + crystalNumber[i]);
+		// crystalNumber2 = Math.floor(Math.random()*12 + 1);
+		// console.log("crystal number 2: " + crystalNumber2);
+		// crystalNumber3 = Math.floor(Math.random()*12 + 1);
+		// console.log("crystal number 3: " + crystalNumber3);
+
+		// crystalNumber4 = Math.floor(Math.random()*12 + 1);
+		// console.log("crystal number 4: " + crystalNumber4);
+	</script>
+
+
+
+</body>
+</html>
