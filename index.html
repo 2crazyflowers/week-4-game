@@ -22,52 +22,140 @@
 			<!-- <br> -->
 			<p>Each time when the game starts, the game will change the values of each crystal.</p>
 		</div>
-		<div class="Computer-Number">
+		<div class="computerpick">
 			<p>Number to match: <span class="Computer-Number"></span></p>
 		</div>
 		<div class="Wins-Losses">
 			<p>Wins: <span class="wins"></span></p>
 			<p>Losses: <span class="losses"></span></p>
 		</div>
-		<div class="crystals">
-			<img src="assets/images/bluecrystal.jpg" class="crystal-1">
-			<img src="assets/images/pinkcrystal.jpg" class="crystal-2">
-			<img src="assets/images/whitecrystal.jpg" class="crystal-3">
-			<img src="assets/images/redcrystal.jpg" class="crystal-4">
-		</div>
+		<div id="crystals"></div>
 		<div class="user-words">
-			<p>Your total score is:</p>
+			<p>Your total score is: <span class="counter"></span></p>
 		</div>
 		<div class="User-Number">Hello World</div>
 	</div>
-
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- <script src="assets/javascript/game.js"></script> -->
+		
 	<script type="text/javascript">
 		
-		computerNumber = (Math.floor(Math.random()*120) + 19);
-		console.log(computerNumber);
+		//state variables
+		var targetNumber = 0;
+		var counter = 0;
+		var numberOptions = [];
+		// var imageCrystal = 0;
+		var crystalValue = 0;
+		var wins = 0;
+		var losses = 0;
+		var images = [];	
+		
 
-		//function give random values to crystals
-		//the random numbers are chosen from an array of 4 numbers
-		//then you pick a number from the array to give value to a crystal
-		//numbers from 1-12
-		var crytalArray = [0, 0, 0, 0];
 
-		//we want to pick a number for each of the crystals
-		for (var i = 0; i < crytalArray.length; i++) {
+		function gameOn() {
+			var counter = 0;
+			var imageCrystal = 0;
+			var crystalValue = 0;
+			var numberOptions = [];
+
+			$(".counter").text(counter);
+			$("#crystals").empty();
+			$(".wins").text(wins);
+			$(".losses").text(losses);
+
+			targetNumber = Math.floor(Math.random()*120 + 19);
+			console.log(targetNumber);
 
 
-		crystalNumber[i] = (Math.floor(Math.random()*12 )+ 1);
-		console.log("crystal" + crystalNumber[i]);
-		// crystalNumber2 = Math.floor(Math.random()*12 + 1);
-		// console.log("crystal number 2: " + crystalNumber2);
-		// crystalNumber3 = Math.floor(Math.random()*12 + 1);
-		// console.log("crystal number 3: " + crystalNumber3);
+			$(".Computer-Number").text(targetNumber);
+			//function give random values to crystals
+			//the random values are chosen from an array of 4 numbers
+			//then you pick a value from the array to give value to a crystal
+			//numbers are to be from 1-12
 
-		// crystalNumber4 = Math.floor(Math.random()*12 + 1);
-		// console.log("crystal number 4: " + crystalNumber4);
+			//here we pick a random number to put in an array of 4 values for each of the crystals
+
+			for (var i = 0; i < 4; i++) {
+
+				numberOptions[i] = Math.floor(Math.random()*12) + 1;
+				console.log("crystal Value " + i + " is " + numberOptions[i]);
+			}
+
+			//then we access a value to each of the images so we need to create a for loop to call each image give it its html tag, class, give it the scr link then give that image its value. 
+			for (var i = 0; i < 4; i++) {
+				//need to call the array of images to call from
+				var images = [ 
+				"assets/images/bluecrystal.jpg",
+				"assets/images/pinkcrystal.jpg",
+				"assets/images/whitecrystal.jpg", 
+				"assets/images/redcrystal.jpg"];
+
+				//need to give each image we need to give it its html tag
+				var imageCrystal = $("<img>");
+
+				//then for each image  need to assess it a class of crystals from the html file
+				imageCrystal.addClass("crystal-image");
+
+				//then for each image we need to assess its image src and image jpg location
+				imageCrystal.attr("src", images[i]);
+
+				//then each image/crystal needs to be given its random number assessed to it
+				imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+
+				//then each image with value gets added to the div
+				$("#crystals").append(imageCrystal);
+
+			}
+
+			console.log(numberOptions[0]);
+			console.log(numberOptions[1]);
+			console.log(numberOptions[2]);
+			console.log(numberOptions[3]); 
+		}
+
+		function reviewForMatch() {
+			if(counter === targetNumber) {
+				alert("You won!");
+				wins++;
+				console.log("Counter: " + counter);
+				console.log("Computer guess: " +targetNumber);
+				$(".wins").text(wins);
+				gameOn();
+			}
+
+			else if (counter >= targetNumber) {
+				losses++;
+				console.log("Counter: " + counter);
+				console.log("Computer guess: " +targetNumber);
+				alert("You lost!");
+				$(".losses").text(losses);
+				gameOn();
+			}
+		}
+
+		// Game begins and works here ---------
+
+		gameOn();
+
+		//key up function to allow user to pick crystals
+		$(".crystal-image").click(function() {
+			alert("Is this happening?");
+			crystalValue = ($(this).attr("data-crystalvalue"));
+		    crystalValue = parseInt(crystalValue);
+
+		    counter += crystalValue;
+		    $(".counter").text(counter);
+		    
+		console.log(numberOptions[0]);
+		console.log(numberOptions[1]);
+		console.log(numberOptions[2]);
+		console.log(numberOptions[3]);
+
+		reviewForMatch();
+
+	})
+
+
 	</script>
-
-
-
 </body>
 </html>

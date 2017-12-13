@@ -9,7 +9,7 @@
 
 }
 
-.Computer-Number {
+.computerpick {
 	background-color: teal;
 	padding: 10px;
 	width: 450px;
@@ -22,10 +22,10 @@
 	padding: 10px;
 }
 
-.crystals img {
-	margin-top: 20px;
-	height: 80px;
-	width: 80px;
+#crystals img {
+	margin: 20px 8px;
+	height: 90px;
+	width: 90px;
 }
 
 .user-words,.User-Number {
