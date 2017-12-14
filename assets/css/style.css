@@ -30,6 +30,7 @@ h1 {
 }
 
 .computernumber {
+	font-weight: bold;
 	background-color: #5D64AA;
 	margin: 2%;
 	padding: 2%;
@@ -50,6 +51,7 @@ h1 {
 }
 
 .usertotal {
+	font-weight: bold;
 	background-color: #5D64AA;
 	margin: 2%;
 	padding: 2%;
@@ -61,4 +63,10 @@ h1 {
 	/*margin-bottom: 50px;*/
 	padding: 2%;
 	/*width: 450px;*/
+}
+
+.status {
+	font-family: 'Rammetto One', cursive;
+	font-size: 1.25rem;
+	color: white;
 }

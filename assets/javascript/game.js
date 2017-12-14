@@ -12,6 +12,7 @@ var images = [
 		"assets/images/dkpurplecrystal.jpg",
 		"assets/images/whitecrystals.jpg", 
 		"assets/images/tealcrystal.jpg"];	
+
 	
 
 
@@ -68,18 +69,14 @@ function gameOn() {
 		$("#crystals").append(imageCrystal);
 
 
-
 	}
 
-	console.log(numberOptions[0]);
-	console.log(numberOptions[1]);
-	console.log(numberOptions[2]);
-	console.log(numberOptions[3]); 
 }
 
 function reviewForMatch() {
 	if(counter === targetNumber) {
-		alert("You won!");
+		$(".status").text("You won!");
+		// alert("You won!");
 		wins++;
 		console.log("Counter: " + counter);
 		console.log("Computer guess: " +targetNumber);
@@ -88,10 +85,11 @@ function reviewForMatch() {
 	}
 
 	else if (counter >= targetNumber) {
+		$(".status").text("You lost!");
 		losses++;
 		console.log("Counter: " + counter);
 		console.log("Computer guess: " +targetNumber);
-		alert("You lost!");
+		// alert("You lost!");
 		$(".losses").text(losses);
 		gameOn();
 	}
