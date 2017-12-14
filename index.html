@@ -3,163 +3,45 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Crystal Collector Game</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+	<link href="https://fonts.googleapis.com/css?family=Rammetto+One|Roboto" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 <body>
-	<div class="container">
-		<h1>Crystals Collector</h1>
-		<div class="instructions">
-			<p>You will be given a random number at the start of the game</p>
-			<!-- <br> -->
-			<p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
-			<!-- <br> -->
-			<p>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</p>
-			<!-- <br> -->
-			<p>The value of each crystal is hidden from you until you click on it.</p>
-			<!-- <br> -->
-			<p>Each time when the game starts, the game will change the values of each crystal.</p>
-		</div>
-		<div class="computerpick">
-			<p>Number to match: <span class="Computer-Number"></span></p>
-		</div>
-		<div class="Wins-Losses">
-			<p>Wins: <span class="wins"></span></p>
-			<p>Losses: <span class="losses"></span></p>
-		</div>
-		<div id="crystals"></div>
-		<div class="user-words">
-			<p>Your total score is: <span class="counter"></span></p>
-		</div>
-		<div class="User-Number">Hello World</div>
-	</div>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- <script src="assets/javascript/game.js"></script> -->
-		
-	<script type="text/javascript">
-		
-		//state variables
-		var targetNumber = 0;
-		var counter = 0;
-		var numberOptions = [];
-		// var imageCrystal = 0;
-		var crystalValue = 0;
-		var wins = 0;
-		var losses = 0;
-		var images = [ 
-				"assets/images/bluecrystal.jpg",
-				"assets/images/pinkcrystal.jpg",
-				"assets/images/whitecrystal.jpg", 
-				"assets/images/redcrystal.jpg"];	
-		
-
-
-		function gameOn() {
-			counter = 0;
-			imageCrystal = 0;
-			crystalValue = 0;
-			numberOptions = [];
-
-			$(".counter").text(counter);
-			$("#crystals").empty();
-			$(".wins").text(wins);
-			$(".losses").text(losses);
-
-			targetNumber = Math.floor(Math.random()*120 + 19);
-			console.log(targetNumber);
-
-
-			$(".Computer-Number").text(targetNumber);
-			//function give random values to crystals
-			//the random values are chosen from an array of 4 numbers
-			//then you pick a value from the array to give value to a crystal
-			//numbers are to be from 1-12
-
-			//here we pick a random number to put in an array of 4 values for each of the crystals
-
-			for (var i = 0; i < 4; i++) {
-
-				numberOptions[i] = Math.floor(Math.random()*12) + 1;
-				console.log("crystal Value " + i + " is " + numberOptions[i]);
-			}
-
-			//then we access a value to each of the images so we need to create a for loop to call each image give it its html tag, class, give it the scr link then give that image its value. 
-			for (var i = 0; i < 4; i++) {
+	<div class="jumbotron">
+		<h1>Crystal Collector</h1>
+		<div class="row">
+			<div class="instructions col-6 col-md-6 col-sm-12">
+				<br>
+				<p>You will be given a radom number at the start of the game that you need to match to win.</p>
+				<!-- <br> -->
+				<p>There are four crystals. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+				<!-- <br> -->
+				<p>You win the game by matching your total score to the number to match, you lose the game if your total score goes above the number to match.</p>
+				<!-- <br> -->
+				<p>The value of each crystal is hidden from you until you click on it.</p>
+				<!-- <br> -->
+				<p>Each time when the game starts, the game will change the values of each crystal.</p>
+			</div>
+			<div class="other col-6 col-md-6 col-sm-12">
+				<div class="computernumber">
+					<p>Number to match: <span class="Computer-Number"></span></p>
+				</div>
 				
-
-				//need to give each image we need to give it its html tag
-				var imageCrystal = $("<img>");
-
-				//then for each image  need to assess it a class of crystals from the html file
-				imageCrystal.addClass("crystal-image");
-
-				//then for each image we need to assess its image src and image jpg location variable called in global
-				imageCrystal.attr("src", images[i]);
-
-				//then each image/crystal needs to be given its random number assessed to it
-				imageCrystal.attr("data-crystalvalue", numberOptions[i]);
-
-				//add click here as it was not working below (needed to be called within a function)
-				//this key up function to allow user to pick crystals and its associated value to the total
-				imageCrystal.click(crystalClick);
-
-				//then each image with value gets added to the div
-				$("#crystals").append(imageCrystal);
-
-
-
-			}
-
-			console.log(numberOptions[0]);
-			console.log(numberOptions[1]);
-			console.log(numberOptions[2]);
-			console.log(numberOptions[3]); 
-		}
-
-		function reviewForMatch() {
-			if(counter === targetNumber) {
-				alert("You won!");
-				wins++;
-				console.log("Counter: " + counter);
-				console.log("Computer guess: " +targetNumber);
-				$(".wins").text(wins);
-				gameOn();
-			}
-
-			else if (counter >= targetNumber) {
-				losses++;
-				console.log("Counter: " + counter);
-				console.log("Computer guess: " +targetNumber);
-				alert("You lost!");
-				$(".losses").text(losses);
-				gameOn();
-			}
-		}
-
-		// Game begins and works here ---------
-
-		gameOn();
-
+				<div id="crystals"></div>
+				<div class="usertotal">
+					<p>Your total score is: <span class="counter"></span></p>
+				</div>
+				<div class="Wins-Losses">
+					<p>Wins: <span class="wins"></span></p>
+					<p>Losses: <span class="losses"></span></p>
+				</div>
+			</div>
+		</div>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="assets/javascript/game.js"></script>
 		
-		function crystalClick() {
-			crystalValue = ($(this).attr("data-crystalvalue"));
-		    crystalValue = parseInt(crystalValue);
-
-		    counter += crystalValue;
-		    $(".counter").text(counter);
-		    
-		console.log(numberOptions[0]);
-		console.log(numberOptions[1]);
-		console.log(numberOptions[2]);
-		console.log(numberOptions[3]);
-
-		reviewForMatch();
-
-	}
-
-
-	</script>
 </body>
 </html>
