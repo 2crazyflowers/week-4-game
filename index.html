@@ -48,15 +48,19 @@
 		var crystalValue = 0;
 		var wins = 0;
 		var losses = 0;
-		var images = [];	
+		var images = [ 
+				"assets/images/bluecrystal.jpg",
+				"assets/images/pinkcrystal.jpg",
+				"assets/images/whitecrystal.jpg", 
+				"assets/images/redcrystal.jpg"];	
 		
 
 
 		function gameOn() {
-			var counter = 0;
-			var imageCrystal = 0;
-			var crystalValue = 0;
-			var numberOptions = [];
+			counter = 0;
+			imageCrystal = 0;
+			crystalValue = 0;
+			numberOptions = [];
 
 			$(".counter").text(counter);
 			$("#crystals").empty();
@@ -83,12 +87,7 @@
 
 			//then we access a value to each of the images so we need to create a for loop to call each image give it its html tag, class, give it the scr link then give that image its value. 
 			for (var i = 0; i < 4; i++) {
-				//need to call the array of images to call from
-				var images = [ 
-				"assets/images/bluecrystal.jpg",
-				"assets/images/pinkcrystal.jpg",
-				"assets/images/whitecrystal.jpg", 
-				"assets/images/redcrystal.jpg"];
+				
 
 				//need to give each image we need to give it its html tag
 				var imageCrystal = $("<img>");
@@ -96,14 +95,20 @@
 				//then for each image  need to assess it a class of crystals from the html file
 				imageCrystal.addClass("crystal-image");
 
-				//then for each image we need to assess its image src and image jpg location
+				//then for each image we need to assess its image src and image jpg location variable called in global
 				imageCrystal.attr("src", images[i]);
 
 				//then each image/crystal needs to be given its random number assessed to it
 				imageCrystal.attr("data-crystalvalue", numberOptions[i]);
 
+				//add click here as it was not working below (needed to be called within a function)
+				//this key up function to allow user to pick crystals and its associated value to the total
+				imageCrystal.click(crystalClick);
+
 				//then each image with value gets added to the div
 				$("#crystals").append(imageCrystal);
+
+
 
 			}
 
@@ -137,9 +142,8 @@
 
 		gameOn();
 
-		//key up function to allow user to pick crystals
-		$(".crystal-image").click(function() {
-			alert("Is this happening?");
+		
+		function crystalClick() {
 			crystalValue = ($(this).attr("data-crystalvalue"));
 		    crystalValue = parseInt(crystalValue);
 
@@ -153,7 +157,7 @@
 
 		reviewForMatch();
 
-	})
+	}
 
 
 	</script>
