@@ -11,7 +11,9 @@ var images = [
 		"assets/images/bluecrystal.jpg",
 		"assets/images/dkpurplecrystal.jpg",
 		"assets/images/whitecrystals.jpg", 
-		"assets/images/tealcrystal.jpg"];	
+		"assets/images/tealcrystal.jpg"];
+var myLossSound = new Audio("assets/sounds/aww.mp4");	
+var myWinSound = new Audio("assets/sounds/yay2.mp4");
 
 	
 
@@ -76,6 +78,7 @@ function gameOn() {
 function reviewForMatch() {
 	if(counter === targetNumber) {
 		$(".status").text("You won!");
+		myWinSound.play();
 		// alert("You won!");
 		wins++;
 		console.log("Counter: " + counter);
@@ -86,6 +89,7 @@ function reviewForMatch() {
 
 	else if (counter >= targetNumber) {
 		$(".status").text("You lost!");
+		myLossSound.play();
 		losses++;
 		console.log("Counter: " + counter);
 		console.log("Computer guess: " +targetNumber);
@@ -94,6 +98,7 @@ function reviewForMatch() {
 		gameOn();
 	}
 }
+
 
 // Game begins and works here ---------
 
@@ -107,10 +112,6 @@ function crystalClick() {
     counter += crystalValue;
     $(".counter").text(counter);
     
-console.log(numberOptions[0]);
-console.log(numberOptions[1]);
-console.log(numberOptions[2]);
-console.log(numberOptions[3]);
 
 reviewForMatch();
 
