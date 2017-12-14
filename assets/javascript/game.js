@@ -45,7 +45,6 @@ function gameOn() {
 
 		numberOptions[i] = Math.floor(Math.random()*12) + 1;
 		console.log("crystal Value " + i + " is " + numberOptions[i]);
-
 	}
 
 	//then we access a value to each of the images so we need to create a for loop to call each image give it its html tag, class, give it the scr link then give that image its value. 
@@ -82,7 +81,7 @@ function reviewForMatch() {
 		// setTimeout(function() {$(".status").empty();
   //   }, 3000);
 		// timedText();
-		setTimeout(reset, 3000);
+		setTimeout(reset, 2000);
 		myWinSound.play();
 		// alert("You won!");
 		wins++;
@@ -97,7 +96,7 @@ function reviewForMatch() {
 		//the below timer did not work
 		// setTimeout(function() {$(".status").empty();
   //   }, 3000);
-		setTimeout(reset, 4000);
+		setTimeout(reset, 2000);
 		myLossSound.play();
 		losses++;
 		console.log("Counter: " + counter);
